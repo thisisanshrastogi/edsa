@@ -179,8 +179,8 @@ export default function MainContent({ tierId, data, store }) {
         </div>
 
         {/* Filters Bar */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-4 flex flex-col md:flex-row gap-4 items-center">
-          <div className="relative w-full md:flex-1">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-4 flex flex-wrap gap-4 items-center">
+          <div className="relative flex-[1_1_100%] lg:flex-[1_1_300px]">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
             <input 
               ref={searchInputRef}
@@ -195,7 +195,7 @@ export default function MainContent({ tierId, data, store }) {
               <kbd className="font-sans text-[10px] font-semibold text-neutral-400 bg-white border border-neutral-200 rounded px-1.5 py-0.5">K</kbd>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto shrink-0">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
             <div className="relative" ref={diffMenuRef}>
               <button
                 onClick={() => setShowDifficultyMenu(!showDifficultyMenu)}
