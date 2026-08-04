@@ -19,8 +19,7 @@ export default function ProblemRow({ problem, index, store, onClick }) {
 
   return (
     <div 
-      onClick={onClick}
-      className={`cursor-pointer transition-colors relative ${store.compactMode ? 'px-3 py-1.5 rounded-lg' : 'p-4 md:px-6 md:py-4'} ${isStruggled ? 'bg-orange-50/30 hover:bg-orange-50/50' : (isCompleted ? 'bg-neutral-50/30' : 'hover:bg-neutral-50/50')}`}
+      className={`transition-colors relative ${store.compactMode ? 'px-3 py-1.5 rounded-lg' : 'p-4 md:px-6 md:py-4'} ${isStruggled ? 'bg-orange-50/30 hover:bg-orange-50/50' : (isCompleted ? 'bg-neutral-50/30' : 'hover:bg-neutral-50/50')}`}
     >
       <div className={`flex ${store.compactMode ? 'items-center gap-3' : 'items-start gap-4'}`}>
         {/* Custom Checkbox */}

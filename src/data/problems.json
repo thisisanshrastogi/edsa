@@ -67,413 +67,472 @@
       "name": "Prefix Sum / Suffix Sum",
       "tier": 1,
       "count": 7,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "repeated range queries, or \"result at i depends on everything left AND right of i\""
     },
     {
       "id": "1.2",
       "name": "Prefix Sum + HashMap",
       "tier": 1,
       "count": 8,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"count/find subarrays whose sum (or count, or parity) equals X\" — the single highest-leverage array trick"
     },
     {
       "id": "1.3",
       "name": "2D Prefix Sum",
       "tier": 1,
       "count": 6,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "repeated submatrix sum queries"
     },
     {
       "id": "1.4",
       "name": "Difference Array",
       "tier": 1,
       "count": 6,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "many range updates, then one final read. Inverse of prefix sum"
     },
     {
       "id": "1.5",
       "name": "Two Pointers — Opposite Ends",
       "tier": 1,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "sorted input + pair/triplet target, or \"width vs height\" tradeoffs"
     },
     {
       "id": "1.6",
       "name": "Two Pointers — Same Direction (read/write)",
       "tier": 1,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "in-place filtering, merging, or \"compare two sequences left-to-right\""
     },
     {
       "id": "1.7",
       "name": "Dutch National Flag / 3-Way Partition",
       "tier": 1,
       "count": 6,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "partition in-place into ≤3 buckets, one pass, O(1) space"
     },
     {
       "id": "1.8",
       "name": "Sliding Window — Fixed Size",
       "tier": 1,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "the literal phrase \"of size k\" / \"of length k\""
     },
     {
       "id": "1.9",
       "name": "Sliding Window — Variable Size",
       "tier": 1,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"longest/shortest subarray-or-substring such that <condition>\""
     },
     {
       "id": "1.10",
       "name": "Sliding Window + At-Most-K Trick",
       "tier": 1,
       "count": 7,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"exactly K\" → compute `atMost(K) − atMost(K−1)`. Non-obvious until you've seen it once"
     },
     {
       "id": "1.11",
       "name": "Kadane / Running Optimum",
       "tier": 1,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"maximum/minimum contiguous subarray ___\""
     },
     {
       "id": "1.12",
       "name": "Cyclic Sort (index-as-key)",
       "tier": 1,
       "count": 6,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "values are a permutation-ish of `[1..n]` or `[0..n]`, and O(1) space is demanded"
     },
     {
       "id": "1.13",
       "name": "In-Place Encoding / Sign Marking",
       "tier": 1,
       "count": 5,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"do it with O(1) extra space\" on a bounded-value array or matrix"
     },
     {
       "id": "1.14",
       "name": "Rotation & Reversal Tricks",
       "tier": 1,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "shift/rotate by k, or reverse-at-two-granularities"
     },
     {
       "id": "1.15",
       "name": "Merge Intervals",
       "tier": 1,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "input is a list of `[start, end]` pairs"
     },
     {
       "id": "1.16",
       "name": "Sweep Line / Event Sorting",
       "tier": 1,
       "count": 7,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"maximum number of X at any point in time\", or geometry over ranges"
     },
     {
       "id": "1.17",
       "name": "Matrix Traversal & Transforms",
       "tier": 1,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "the input is a grid and the task is positional, not graph-like"
     },
     {
       "id": "1.18",
       "name": "String Frequency / Anagram",
       "tier": 1,
       "count": 8,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"anagram\", \"permutation of\", \"same characters\""
     },
     {
       "id": "1.19",
       "name": "Expand Around Center",
       "tier": 1,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "palindromes in a string"
     },
     {
       "id": "1.20",
       "name": "String Parsing & Simulation",
       "tier": 1,
       "count": 8,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "messy real-world-shaped string input with rules"
     },
     {
       "id": "2.1",
       "name": "Classic Binary Search",
       "tier": 2,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "sorted, find exact target"
     },
     {
       "id": "2.2",
       "name": "Lower / Upper Bound (boundary search)",
       "tier": 2,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "duplicates present, need first/last occurrence or insertion point"
     },
     {
       "id": "2.3",
       "name": "Binary Search on Rotated / Modified Arrays",
       "tier": 2,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"sorted but rotated\", \"unknown pivot\", \"peak\""
     },
     {
       "id": "2.4",
       "name": "Binary Search on Answer ⚡",
       "tier": 2,
       "count": 9,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"minimise the maximum\" / \"maximise the minimum\" / \"smallest k such that it's possible\". **The highest-value pattern in Tier 2**"
     },
     {
       "id": "2.5",
       "name": "Binary Search on 2D",
       "tier": 2,
       "count": 5,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "matrix with sortedness in rows and/or columns"
     },
     {
       "id": "2.6",
       "name": "Binary Search Partition on Two Arrays",
       "tier": 2,
       "count": 2,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"median of two sorted arrays\" or k-th across two sorted sequences"
     },
     {
       "id": "2.7",
       "name": "Quickselect",
       "tier": 2,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"Kth largest/smallest\" with an O(n)-average expectation"
     },
     {
       "id": "2.8",
       "name": "Custom Comparator Sorting",
       "tier": 2,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"sort by a rule that isn't natural ordering\""
     },
     {
       "id": "2.9",
       "name": "Merge Sort Side Effects",
       "tier": 2,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "counting pairs/inversions across a sequence"
     },
     {
       "id": "3.1",
       "name": "Stack Simulation & Matching",
       "tier": 3,
       "count": 8,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "nesting, pairing, or \"undo the last thing\""
     },
     {
       "id": "3.2",
       "name": "Monotonic Stack",
       "tier": 3,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"next/previous greater/smaller element\" — explicit or hidden"
     },
     {
       "id": "3.3",
       "name": "Monotonic Stack — Histogram Family",
       "tier": 3,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "heights/bars, area or \"span dominated by a minimum\""
     },
     {
       "id": "3.4",
       "name": "Monotonic Deque",
       "tier": 3,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "sliding window + max/min, or window with a monotonic constraint"
     },
     {
       "id": "3.5",
       "name": "Expression Parsing with Stacks",
       "tier": 3,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "arithmetic strings, nested encodings, recursive structure in flat text"
     },
     {
       "id": "3.6",
       "name": "Top-K Elements (Heap)",
       "tier": 3,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"K most/least ___\" where full sorting is overkill"
     },
     {
       "id": "3.7",
       "name": "Two Heaps",
       "tier": 3,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "need the median, or need to balance a set into \"small half / large half\""
     },
     {
       "id": "3.8",
       "name": "K-Way Merge",
       "tier": 3,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "K sorted sequences that must be combined or queried together"
     },
     {
       "id": "3.9",
       "name": "Heap-Backed Greedy Scheduling",
       "tier": 3,
       "count": 10,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"schedule/assign/allocate to minimise or maximise ___\" with resources over time"
     },
     {
       "id": "4.1",
       "name": "Dummy Node & Pointer Surgery",
       "tier": 4,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "insert/delete where the head itself might change"
     },
     {
       "id": "4.2",
       "name": "Fast & Slow Pointers",
       "tier": 4,
       "count": 8,
-      "canonical": 6
+      "canonical": 6,
+      "hint": "cycle, middle, or \"kth from end\" — anything needing two speeds"
     },
     {
       "id": "4.3",
       "name": "In-Place Reversal",
       "tier": 4,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "reverse the whole list, a sublist, or fixed-size chunks"
     },
     {
       "id": "4.4",
       "name": "Merge, Sort & Rearrange",
       "tier": 4,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "combining or reorganising whole lists"
     },
     {
       "id": "4.5",
       "name": "List + HashMap Design",
       "tier": 4,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "O(1) access AND O(1) ordered update — the classic combination"
     },
     {
       "id": "5.1",
       "name": "DFS Traversals",
       "tier": 5,
       "count": 6,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "foundational — every other tree pattern is a modified traversal"
     },
     {
       "id": "5.2",
       "name": "BFS / Level Order",
       "tier": 5,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "the words \"level\", \"depth\", \"row\", \"closest\", or \"left/right view\""
     },
     {
       "id": "5.3",
       "name": "Bottom-Up Return Values (divide & conquer)",
       "tier": 5,
       "count": 9,
-      "canonical": 7
+      "canonical": 7,
+      "hint": "\"the answer at this node depends on answers from its subtrees\""
     },
     {
       "id": "5.4",
       "name": "Top-Down Parameter Passing",
       "tier": 5,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"the answer depends on the path taken to get here\""
     },
     {
       "id": "5.5",
       "name": "Path Problems (any node to any node)",
       "tier": 5,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "paths that don't have to touch the root — the hardest tree category"
     },
     {
       "id": "5.6",
       "name": "BST Invariants",
       "tier": 5,
       "count": 9,
-      "canonical": 5
+      "canonical": 5,
+      "hint": "it's a BST — meaning inorder is sorted, and you can prune half the tree"
     },
     {
       "id": "5.7",
       "name": "Lowest Common Ancestor",
       "tier": 5,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"lowest common ancestor\", \"closest shared parent\", \"meeting point\""
     },
     {
       "id": "5.8",
       "name": "Tree Construction & Serialization",
       "tier": 5,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "build a tree from traversal arrays, or convert tree ↔ string"
     },
     {
       "id": "5.9",
       "name": "Tree DP / Rerooting",
       "tier": 5,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "optimisation over a tree where each node has states — or \"answer for every node as root\""
     },
     {
       "id": "5.10",
       "name": "N-ary Trees & Tree-as-Graph",
       "tier": 5,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "movement in any direction (including upward) through a tree"
     },
     {
       "id": "5.11",
       "name": "Trie (Prefix Tree)",
       "tier": 5,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "prefix lookup, autocomplete, dictionary of words"
     },
     {
       "id": "5.12",
       "name": "Trie + Backtracking on a Grid",
       "tier": 5,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "search many words at once in a grid — trie prunes the DFS"
     },
     {
       "id": "5.13",
       "name": "Binary / XOR Trie",
       "tier": 5,
       "count": 4,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"maximum XOR\", queries over bit patterns"
     },
     {
       "id": "6.1",
       "name": "Subsets / Power Set",
       "tier": 6,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"all possible subsets\", include-or-exclude decisions"
     },
     {
       "id": "6.2",
       "name": "Combinations",
       "tier": 6,
       "count": 7,
-      "canonical": 5
+      "canonical": 5,
+      "hint": "\"choose k items\" / \"combinations summing to target\", order doesn't matter"
     },
     {
       "id": "6.3",
       "name": "Permutations",
       "tier": 6,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"all orderings\", order matters"
     },
     {
       "id": "6.4",
@@ -487,196 +546,224 @@
       "name": "Partition Backtracking",
       "tier": 6,
       "count": 6,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"split the input into valid pieces\""
     },
     {
       "id": "6.6",
       "name": "Grid / Board Backtracking",
       "tier": 6,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "place things on a board subject to constraints"
     },
     {
       "id": "6.7",
       "name": "Pruning & Search-Space Reduction",
       "tier": 6,
       "count": 6,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "the correct backtracking solution TLEs. This is the skill of making it pass"
     },
     {
       "id": "6.8",
       "name": "Memoized Recursion — the DP Bridge",
       "tier": 6,
       "count": 17,
-      "canonical": 6
+      "canonical": 6,
+      "hint": "backtracking with **overlapping** subproblems. Everything in Tier 8 starts here"
     },
     {
       "id": "7.1",
       "name": "Graph Building & Representation",
       "tier": 7,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "foundational. If you can't build the adjacency list fast, nothing else matters"
     },
     {
       "id": "7.2",
       "name": "DFS — Connected Components",
       "tier": 7,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"how many groups/islands/provinces\", \"size of the largest group\""
     },
     {
       "id": "7.3",
       "name": "DFS — Cycle Detection (Undirected)",
       "tier": 7,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"is this a tree\", \"which edge creates the cycle\""
     },
     {
       "id": "7.4",
       "name": "DFS — Cycle Detection (Directed, 3-Colour)",
       "tier": 7,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "dependencies, \"can this be completed\", deadlock. **White/Grey/Black** — grey means you're back on your own path"
     },
     {
       "id": "7.5",
       "name": "Flood Fill / Grid as Graph",
       "tier": 7,
       "count": 8,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "2D grid, movement between adjacent cells"
     },
     {
       "id": "7.6",
       "name": "BFS — Unweighted Shortest Path",
       "tier": 7,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"fewest steps/moves/transformations\". **If edges are unweighted, BFS beats Dijkstra** — don't reach for the heap"
     },
     {
       "id": "7.7",
       "name": "Multi-Source BFS",
       "tier": 7,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"spreading from many starting points at once\", \"distance to the nearest X\". **Push all sources into the queue before the first pop** — that's the whole trick"
     },
     {
       "id": "7.8",
       "name": "BFS on an Implicit State Graph ⚡",
       "tier": 7,
       "count": 7,
-      "canonical": 5
+      "canonical": 5,
+      "hint": "**no graph is given.** The nodes are configurations — a word, a lock combination, a board layout, a (position, keys-held) pair. This is the pattern that separates people who \"know BFS\" from people who can use it"
     },
     {
       "id": "7.9",
       "name": "Bidirectional BFS",
       "tier": 7,
       "count": 4,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "both endpoints known + huge branching factor. Roughly halves the explored depth. **Rarely required, occasionally the follow-up**"
     },
     {
       "id": "7.10",
       "name": "Topological Sort — Kahn's (BFS, in-degree)",
       "tier": 7,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"order tasks respecting dependencies\", \"is this schedulable\". **Prefer Kahn's when you need the order or need to detect impossibility**"
     },
     {
       "id": "7.11",
       "name": "Topological Sort — DFS Postorder",
       "tier": 7,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "same problems, different tool. **Push to a stack on the way out; reverse at the end**"
     },
     {
       "id": "7.12",
       "name": "Union-Find / DSU",
       "tier": 7,
       "count": 8,
-      "canonical": 5
+      "canonical": 5,
+      "hint": "\"are these two in the same group\", edges arriving dynamically, or \"merge these sets\". **DSU beats DFS when connectivity changes over time**"
     },
     {
       "id": "7.13",
       "name": "DSU — Advanced (size, rollback, offline, reverse-time)",
       "tier": 7,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "DSU where you also need component sizes, or where you process operations **backwards**"
     },
     {
       "id": "7.14",
       "name": "Dijkstra",
       "tier": 7,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "weighted edges, **non-negative**, single-source shortest path. Min-heap of `(dist, node)`, skip stale entries"
     },
     {
       "id": "7.15",
       "name": "Dijkstra Variants & Constrained Shortest Path",
       "tier": 7,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "shortest path **plus** an extra dimension — stops used, discounts remaining, keys held"
     },
     {
       "id": "7.16",
       "name": "Bellman-Ford / SPFA",
       "tier": 7,
       "count": 5,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "**negative weights**, or a hard cap on the number of edges used. Relax all edges V−1 times"
     },
     {
       "id": "7.17",
       "name": "Floyd–Warshall (all-pairs)",
       "tier": 7,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "small n (≤ 400ish) + many source-destination queries. Three nested loops, `k` on the outside"
     },
     {
       "id": "7.18",
       "name": "0-1 BFS (deque)",
       "tier": 7,
       "count": 4,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "every edge weight is **0 or 1**. Push-front for 0, push-back for 1. Gets Dijkstra's answer without the heap"
     },
     {
       "id": "7.19",
       "name": "MST — Kruskal (sort edges + DSU)",
       "tier": 7,
       "count": 5,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"minimum cost to connect all\", \"cheapest network\". Sort edges ascending, union if they don't cycle"
     },
     {
       "id": "7.20",
       "name": "MST — Prim (grow from a node with a heap)",
       "tier": 7,
       "count": 4,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "same problems. Prim wins on dense graphs, Kruskal on sparse. **Know both; pick one as your default**"
     },
     {
       "id": "7.21",
       "name": "Eulerian Path",
       "tier": 7,
       "count": 3,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"use **every edge** exactly once\" (contrast: Hamiltonian = every *node*). Hierholzer's algorithm"
     },
     {
       "id": "7.22",
       "name": "Bridges & Articulation Points (Tarjan)",
       "tier": 7,
       "count": 2,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"critical connection\", \"single point of failure\". Discovery time + low-link values"
     },
     {
       "id": "7.23",
       "name": "Strongly Connected Components (Kosaraju / Tarjan)",
       "tier": 7,
       "count": 2,
-      "canonical": 0
+      "canonical": 0,
+      "hint": "directed graph, \"mutually reachable groups\""
     },
     {
       "id": "7.24",
       "name": "Bipartite Check / Graph Colouring",
       "tier": 7,
       "count": 12,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"split into two groups\", \"no two adjacent can be the same\". 2-colour via BFS or DFS"
     },
     {
       "id": "8.1",
@@ -774,7 +861,8 @@
       "name": "Bitmask DP",
       "tier": 8,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "**n ≤ 20**. State includes a subset as an integer. `dp[mask]` or `dp[mask][i]`"
     },
     {
       "id": "8.15",
@@ -788,7 +876,8 @@
       "name": "Digit DP",
       "tier": 8,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"count numbers in [1, N] satisfying a digit property\". State: `(position, tight, started, ...)`"
     },
     {
       "id": "8.17",
@@ -802,28 +891,32 @@
       "name": "Interval Greedy (sort by end time)",
       "tier": 9,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "choose a maximum non-conflicting set of intervals. **Sort by END, not start** — that's the distinction from 1.15"
     },
     {
       "id": "9.2",
       "name": "Reachability Greedy",
       "tier": 9,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"can I get to the end\", \"fewest jumps\". Track the furthest reachable point"
     },
     {
       "id": "9.3",
       "name": "Exchange-Argument Greedy",
       "tier": 9,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "sort or scan by some key, make the locally best choice, and be able to justify it"
     },
     {
       "id": "9.4",
       "name": "Greedy Backed by a Heap",
       "tier": 9,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "greedy where the best choice changes as you go — including **retroactively**"
     },
     {
       "id": "9.5",
@@ -837,147 +930,168 @@
       "name": "Bit Basics",
       "tier": 10,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "foundational. Get/set/clear/toggle, and counting"
     },
     {
       "id": "10.2",
       "name": "XOR Properties",
       "tier": 10,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "pairs cancel, `a ^ a = 0`, `a ^ 0 = a`, and XOR is commutative"
     },
     {
       "id": "10.3",
       "name": "Bitmask Subset Enumeration",
       "tier": 10,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "n ≤ 20 and you need to walk all subsets. `for mask in range(1 << n)`"
     },
     {
       "id": "10.4",
       "name": "Bit Tricks & Arithmetic Without Operators",
       "tier": 10,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "`n & (n−1)` clears the lowest set bit; `n & −n` isolates it. Plus \"implement X without using X\""
     },
     {
       "id": "10.5",
       "name": "GCD / LCM / Number Theory",
       "tier": 10,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "fractions, cycles, ratios, \"reduce to simplest form\""
     },
     {
       "id": "10.6",
       "name": "Sieve of Eratosthenes",
       "tier": 10,
       "count": 5,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "\"all primes up to N\", or repeated factorisation"
     },
     {
       "id": "10.7",
       "name": "Modular Arithmetic & Fast Exponentiation",
       "tier": 10,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"answer mod 1e9+7\", or huge exponents"
     },
     {
       "id": "10.8",
       "name": "Geometry",
       "tier": 10,
       "count": 6,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "points, rectangles, areas, overlaps"
     },
     {
       "id": "10.9",
       "name": "Randomised Algorithms",
       "tier": 10,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "\"pick uniformly at random\", \"shuffle\", \"stream of unknown length\""
     },
     {
       "id": "11.1",
       "name": "HashMap + Auxiliary Structure",
       "tier": 11,
       "count": 7,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "two operations that individually want different structures"
     },
     {
       "id": "11.2",
       "name": "Iterator Design",
       "tier": 11,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "\"implement `next()` and `hasNext()`\" over something non-linear. Key skill: **lazy** evaluation, not flattening upfront"
     },
     {
       "id": "11.3",
       "name": "Stack / Queue Cross-Implementation",
       "tier": 11,
       "count": 7,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"implement X using only Y\", or \"add an O(1) operation to a standard structure\""
     },
     {
       "id": "11.4",
       "name": "Time-Based & Streaming Design",
       "tier": 11,
       "count": 8,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "data arrives over time; queries are about recency or a time window"
     },
     {
       "id": "11.5",
       "name": "Simulation Design",
       "tier": 11,
       "count": 7,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "model a real system. Graded on **API decomposition** as much as algorithms"
     },
     {
       "id": "11.6",
       "name": "Fenwick Tree (Binary Indexed Tree)",
       "tier": 11,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "prefix sums **with point updates**. Shorter to write than a segment tree — prefer it when you only need prefix aggregates"
     },
     {
       "id": "11.7",
       "name": "Segment Tree (+ lazy propagation)",
       "tier": 11,
       "count": 6,
-      "canonical": 3
+      "canonical": 3,
+      "hint": "**range** query AND **range** update. More code than BIT — use only when BIT can't do it"
     },
     {
       "id": "11.8",
       "name": "Ordered Set / SortedList",
       "tier": 11,
       "count": 6,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "\"find the nearest smaller/larger element\" **while the set is changing**. Python has `sortedcontainers`; Java has TreeMap; C++ has `std::set`"
     },
     {
       "id": "12.1",
       "name": "KMP / Prefix Function",
       "tier": 12,
       "count": 5,
-      "canonical": 4
+      "canonical": 4,
+      "hint": "substring search in O(n+m), or \"longest proper prefix that is also a suffix\""
     },
     {
       "id": "12.2",
       "name": "Rabin–Karp / Rolling Hash",
       "tier": 12,
       "count": 5,
-      "canonical": 2
+      "canonical": 2,
+      "hint": "many substring comparisons, or \"longest duplicated substring\". Pairs beautifully with binary search on length"
     },
     {
       "id": "12.3",
       "name": "Manacher's Algorithm",
       "tier": 12,
       "count": 3,
-      "canonical": 1
+      "canonical": 1,
+      "hint": "longest palindromic substring in O(n)"
     },
     {
       "id": "12.4",
       "name": "Z-Algorithm",
       "tier": 12,
       "count": 7,
-      "canonical": 0
+      "canonical": 0,
+      "hint": "alternative to KMP — `z[i]` = length of the longest match between s and s[i:]"
     }
   ],
   "problems": [
