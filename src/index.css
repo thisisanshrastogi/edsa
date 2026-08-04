@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #FBFBFA;
+    --bg-sidebar: #F7F7F5;
+  }
+  
+  .dark {
+    --bg-main: #0a0a0a;
+    --bg-sidebar: #121212;
+    
+    /* Swap neutral palette for dark mode */
+    --color-white: #171717;
+    --color-neutral-50: #1e1e1e;
+    --color-neutral-100: #262626;
+    --color-neutral-200: #333333;
+    --color-neutral-300: #404040;
+    --color-neutral-400: #737373;
+    --color-neutral-500: #a3a3a3;
+    --color-neutral-600: #d4d4d4;
+    --color-neutral-700: #e5e5e5;
+    --color-neutral-800: #f5f5f5;
+    --color-neutral-900: #fafafa;
+    
+    /* Swap pill colors for dark mode to maintain contrast and zen aesthetic */
+    --color-green-50: #052e16;
+    --color-green-200: #14532d;
+    --color-green-500: #22c55e;
+    --color-green-600: #4ade80;
+    --color-green-700: #86efac;
+    
+    --color-amber-50: #451a03;
+    --color-amber-200: #78350f;
+    --color-amber-500: #f59e0b;
+    --color-amber-600: #fbbf24;
+    --color-amber-700: #fcd34d;
+    
+    --color-red-50: #450a0a;
+    --color-red-200: #7f1d1d;
+    --color-red-500: #ef4444;
+    --color-red-600: #f87171;
+    --color-red-700: #fca5a5;
+    
+    --color-indigo-50: #1e1b4b;
+    --color-indigo-200: #312e81;
+    --color-indigo-500: #6366f1;
+    --color-indigo-600: #818cf8;
+    --color-indigo-700: #a5b4fc;
+    
+    --color-blue-50: #172554;
+    --color-blue-200: #1e3a8a;
+    --color-blue-500: #3b82f6;
+    --color-blue-600: #60a5fa;
+    --color-blue-700: #93c5fd;
+    
+    --color-orange-50: #431407;
+    --color-orange-200: #7c2d12;
+    --color-orange-500: #f97316;
+    --color-orange-600: #fb923c;
+    --color-orange-700: #fdba74;
+  }
+  
+  html, body {
+    background-color: var(--bg-main);
+    color: var(--color-neutral-900);
+    @apply font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background-color: var(--color-neutral-200);
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-300);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neutral-400);
+  }
+}
