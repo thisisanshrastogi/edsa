@@ -19,9 +19,9 @@ export default function ProblemRow({ problem, index, store, onClick }) {
 
   return (
     <div 
-      className={`transition-colors relative ${store.compactMode ? 'px-3 py-1.5 rounded-lg' : 'p-4 md:px-6 md:py-4'} ${isStruggled ? 'bg-orange-50/30 hover:bg-orange-50/50' : (isCompleted ? 'bg-neutral-50/30' : 'hover:bg-neutral-50/50')}`}
+      className={`transition-colors relative ${store.compactMode ? 'px-3 py-1.5 rounded-lg' : 'p-3 md:px-4 md:py-3'} ${isStruggled ? 'bg-orange-50/30 hover:bg-orange-50/50' : (isCompleted ? 'bg-neutral-50/30' : 'hover:bg-neutral-50/50')}`}
     >
-      <div className={`flex ${store.compactMode ? 'items-center gap-3' : 'items-start gap-4'}`}>
+      <div className={`flex ${store.compactMode ? 'items-center gap-3' : 'items-start gap-3'}`}>
         {/* Custom Checkbox */}
           <button 
           onClick={(e) => { e.stopPropagation(); store.toggleComplete(problem.id); }}
@@ -34,7 +34,7 @@ export default function ProblemRow({ problem, index, store, onClick }) {
           {isCompleted && <Check className="w-3.5 h-3.5" strokeWidth={3} />}
         </button>
 
-        <div className={`flex-1 min-w-0 ${store.compactMode ? 'flex items-center gap-3' : 'space-y-1'}`}>
+        <div className={`flex-1 min-w-0 flex ${store.compactMode ? 'flex-col lg:flex-row lg:items-center gap-2 lg:gap-3' : 'flex-col space-y-1'}`}>
           <div className="flex flex-wrap items-center gap-2">
             <a 
               href={problem.url} 
@@ -46,7 +46,7 @@ export default function ProblemRow({ problem, index, store, onClick }) {
             </a>
             
             {/* Badges */}
-            <div className="flex items-center gap-1.5 ml-2 flex-wrap">
+            <div className="flex items-center gap-1.5 mt-1 md:mt-0 md:ml-2 flex-wrap">
               <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${getDifficultyBadge(problem.difficulty)}`}>
                 {problem.difficulty}
               </span>
@@ -87,7 +87,7 @@ export default function ProblemRow({ problem, index, store, onClick }) {
             </div>
           </div>
           
-          <div className={`flex items-center gap-4 text-sm text-neutral-500 ${store.compactMode ? 'ml-auto' : ''}`}>
+          <div className={`flex items-center gap-4 text-sm text-neutral-500 ${store.compactMode ? 'lg:ml-auto mt-1 lg:mt-0' : ''}`}>
             {!store.compactMode && problem.companies?.length > 0 && (
               <span className="truncate max-w-[200px]">
                 {problem.companies.join(', ')}

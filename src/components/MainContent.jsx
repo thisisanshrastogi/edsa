@@ -127,7 +127,7 @@ export default function MainContent({ tierId, data, store }) {
       {/* Center Content - Scrolls */}
       <div 
         ref={scrollContainerRef}
-        className="flex-1 min-w-0 h-full overflow-y-auto p-6 md:p-12 pb-32 space-y-10"
+        className="flex-1 min-w-0 h-full overflow-y-auto p-4 sm:p-6 md:p-12 pb-32 space-y-8 md:space-y-10"
       >
         {/* Header */}
         <div className="space-y-4">
@@ -179,8 +179,8 @@ export default function MainContent({ tierId, data, store }) {
         </div>
 
         {/* Filters Bar */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-4 flex flex-wrap gap-4 items-center">
-          <div className="relative flex-[1_1_100%] lg:flex-[1_1_300px]">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-3 md:p-4 flex flex-wrap gap-3 md:gap-4 items-center">
+          <div className="relative flex-[1_1_100%] md:flex-[1_1_250px]">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
             <input 
               ref={searchInputRef}
@@ -195,8 +195,8 @@ export default function MainContent({ tierId, data, store }) {
               <kbd className="font-sans text-[10px] font-semibold text-neutral-400 bg-white border border-neutral-200 rounded px-1.5 py-0.5">K</kbd>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <div className="relative" ref={diffMenuRef}>
+          <div className="flex overflow-x-auto pb-1 md:pb-0 flex-nowrap md:flex-wrap items-center gap-2 md:gap-3 shrink-0 max-w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="relative shrink-0" ref={diffMenuRef}>
               <button
                 onClick={() => setShowDifficultyMenu(!showDifficultyMenu)}
                 className="flex items-center gap-2 bg-neutral-50/50 border border-neutral-200 rounded-xl px-3 py-2 text-sm text-neutral-700 font-medium min-w-[120px] justify-between hover:bg-neutral-50 transition-colors"
@@ -246,7 +246,7 @@ export default function MainContent({ tierId, data, store }) {
         </div>
 
         {/* Patterns List */}
-        <div className="space-y-4 md:space-y-6">
+        <div className="space-y-3 md:space-y-4">
           {(() => {
             const visiblePatterns = patternsInTier.filter(pattern => {
               const rawPatternProblems = allProblemsInTier.filter(p => p.patternId === pattern.id);
@@ -279,6 +279,7 @@ export default function MainContent({ tierId, data, store }) {
             }
 
             return visiblePatterns.map(pattern => {
+              const globalIndex = patternsInTier.findIndex(p => p.id === pattern.id) + 1;
               const rawPatternProblems = allProblemsInTier.filter(p => p.patternId === pattern.id);
               const patternProblems = filterProblems(rawPatternProblems, pattern.name);
               return (
@@ -290,6 +291,7 @@ export default function MainContent({ tierId, data, store }) {
                 >
                   <PatternGroup 
                     pattern={pattern} 
+                    index={globalIndex}
                     problems={patternProblems}
                     totalPatternProblems={rawPatternProblems.length} 
                     store={store}
@@ -316,7 +318,7 @@ export default function MainContent({ tierId, data, store }) {
           </h4>
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
-          {patternsInTier.map(pattern => {
+          {patternsInTier.map((pattern, index) => {
             const patternProblemCount = allProblemsInTier.filter(p => p.patternId === pattern.id).length;
             if (patternProblemCount === 0) return null;
             
@@ -351,7 +353,10 @@ export default function MainContent({ tierId, data, store }) {
                 `}
               >
                 <div className="flex items-center justify-between">
-                  <span className={`truncate mr-2 ${isDone && !isActive ? 'line-through' : ''}`}>{pattern.name}</span>
+                  <span className={`truncate mr-2 ${isDone && !isActive ? 'line-through' : ''}`}>
+                    <span className={`font-mono text-[10px] mr-1.5 ${isActive ? 'text-neutral-500' : 'text-neutral-400'}`}>{index + 1}.</span>
+                    {pattern.name}
+                  </span>
                   <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0 transition-colors ${isActive ? 'bg-neutral-100 text-neutral-600' : 'bg-neutral-100 text-neutral-500'}`}>
                     {completedInPattern}/{patternProblemCount}
                   </span>
@@ -372,7 +377,7 @@ export default function MainContent({ tierId, data, store }) {
   );
 }
 
-function PatternGroup({ pattern, problems, totalPatternProblems, store, isOpen, onToggle, onRowClick }) {
+function PatternGroup({ pattern, index, problems, totalPatternProblems, store, isOpen, onToggle, onRowClick }) {
 
   // Calculate completion based on all problems in the pattern, not just filtered ones
   const completedInPattern = problems.filter(p => store.completed[p.id]).length;
@@ -384,33 +389,39 @@ function PatternGroup({ pattern, problems, totalPatternProblems, store, isOpen, 
   const isActuallyOpen = store.compactMode ? true : isOpen;
 
   return (
-    <div className={`bg-white border border-neutral-200 rounded-2xl transition-all duration-300 ${store.compactMode ? 'p-4 md:p-5' : 'overflow-hidden hover:shadow-md'}`}>
+    <div className={`bg-white border border-neutral-200 rounded-2xl transition-all duration-300 ${store.compactMode ? 'p-3 md:p-4' : 'overflow-hidden hover:shadow-md'}`}>
       {store.compactMode ? (
         <div className="w-full flex items-center justify-between text-left py-2 mb-1">
           <div className={`flex items-center gap-3 ${isAllVisibleDone ? 'text-neutral-400' : 'text-neutral-800'}`}>
             <FolderOpen className={`w-5 h-5 ${isAllVisibleDone ? 'text-neutral-300' : 'text-neutral-400'}`} />
-            <h3 className={`font-semibold text-sm tracking-tight ${isAllVisibleDone ? 'line-through' : ''}`}>{pattern.name}</h3>
+            <h3 className={`font-semibold text-sm tracking-tight ${isAllVisibleDone ? 'line-through' : ''}`}>
+              <span className="text-neutral-500 font-mono text-[11px] mr-1.5">{index}.</span>
+              {pattern.name}
+            </h3>
             <span className="text-xs font-medium text-neutral-400 bg-neutral-100 px-1.5 py-0.5 rounded ml-1">{completedInPattern}/{problems.length}</span>
           </div>
         </div>
       ) : (
         <button 
           onClick={onToggle}
-          className="w-full flex items-center justify-between p-5 md:p-6 bg-white hover:bg-neutral-50/50 transition-colors text-left"
+          className="w-full flex items-center justify-between p-3 md:px-5 md:py-4 bg-white hover:bg-neutral-50/50 transition-colors text-left"
         >
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-4">
             <div className={`
                 w-8 h-8 rounded-full flex items-center justify-center transition-colors shrink-0
                 ${isAllVisibleDone ? 'bg-green-50 text-green-600' : 'bg-neutral-100 text-neutral-500'}
               `}>
                 {isAllVisibleDone ? <Check className="w-4 h-4" strokeWidth={3} /> : <span className="text-xs font-semibold">{completedInPattern}/{problems.length}</span>}
               </div>
-              <div>
+              <div className="text-left">
+                <div className={`text-[10px] font-bold tracking-widest uppercase mb-1 ${isAllVisibleDone ? 'text-neutral-300' : 'text-neutral-400'}`}>
+                  Topic {String(index).padStart(2, '0')}
+                </div>
                 <h3 className={`font-semibold tracking-tight text-lg transition-colors ${isAllVisibleDone ? 'text-neutral-400 line-through' : 'text-neutral-900'}`}>
                   {pattern.name}
                 </h3>
                 {pattern.canonical > 0 && (
-                  <p className="text-xs uppercase tracking-wider font-medium text-neutral-400 mt-1">
+                  <p className="text-[11px] uppercase tracking-wider font-medium text-neutral-400 mt-1">
                     {pattern.canonical} Canonical
                   </p>
                 )}
