@@ -34,9 +34,9 @@ function AppContent() {
   }, [store]);
 
   return (
-    <div className="h-screen w-full overflow-hidden font-sans flex flex-col md:flex-row transition-colors duration-300" style={{ backgroundColor: 'var(--bg-main)' }}>
+    <div className="h-screen w-full overflow-hidden font-sans flex flex-col lg:flex-row transition-colors duration-300" style={{ backgroundColor: 'var(--bg-main)' }}>
       {/* Mobile Header */}
-      <div className="md:hidden sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-neutral-200 px-4 py-3 flex items-center justify-between shrink-0">
+      <div className="lg:hidden sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-neutral-200 px-4 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded bg-neutral-900 flex items-center justify-center text-white">
             <Target className="w-3.5 h-3.5" />
@@ -54,7 +54,7 @@ function AppContent() {
       {/* Sidebar Mobile Overlay */}
       {sidebarOpen && (
         <div 
-          className="md:hidden fixed inset-0 z-40 bg-neutral-900/20 backdrop-blur-sm"
+          className="lg:hidden fixed inset-0 z-40 bg-neutral-900/20 backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -64,7 +64,7 @@ function AppContent() {
         <div 
           className={`
             fixed inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out shrink-0
-            md:relative md:translate-x-0
+            lg:relative lg:translate-x-0
             ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           `}
           style={{ backgroundColor: 'var(--bg-sidebar)' }}

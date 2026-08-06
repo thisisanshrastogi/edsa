@@ -64,7 +64,7 @@ export default function Sidebar({ data, allData, activeTier, setActiveTier, clos
             </button>
             <button
               onClick={closeSidebar}
-              className="md:hidden p-2 -mr-2 text-neutral-500 hover:bg-neutral-200/50 rounded-lg transition-colors"
+              className="lg:hidden p-2 -mr-2 text-neutral-500 hover:bg-neutral-200/50 rounded-lg transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
