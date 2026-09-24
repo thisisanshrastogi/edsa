@@ -1,77 +1,114 @@
 @import "tailwindcss";
 
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-paper-raised: var(--paper-raised);
+  --color-surface: var(--surface);
+  --color-well: var(--well);
+  --color-chip: var(--chip);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-icon: var(--ink-icon);
+  --color-ring-empty: var(--ring-empty);
+  
+  --color-grade-again-text: var(--grade-again-text);
+  --color-grade-again-bg: var(--grade-again-bg);
+  --color-grade-again-line: var(--grade-again-line);
+  --color-grade-hard-text: var(--grade-hard-text);
+  --color-grade-hard-bg: var(--grade-hard-bg);
+  --color-grade-hard-line: var(--grade-hard-line);
+  --color-grade-good-text: var(--grade-good-text);
+  --color-grade-good-bg: var(--grade-good-bg);
+  --color-grade-good-line: var(--grade-good-line);
+  --color-grade-easy-text: var(--grade-easy-text);
+  --color-grade-easy-bg: var(--grade-easy-bg);
+  --color-grade-easy-line: var(--grade-easy-line);
+  
+  --font-serif: "Shippori Mincho", serif;
+  --font-sans: "Zen Kaku Gothic New", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
 @layer base {
   :root {
-    --bg-main: #FBFBFA;
-    --bg-sidebar: #F7F7F5;
+    /* Surfaces — four steps, no pure white */
+    --paper:        #F7F5F0;  /* page */
+    --paper-sunk:   #F1EEE7;  /* sidebar */
+    --surface:      #FCFBF8;  /* rows on hover, inputs, drawer, palette, menus */
+    --well:         #EFECE5;  /* recessed: segmented track, SRS card, selected palette item */
+    --line:         #E6E2D9;  /* dividers */
+    --line-strong:  #D3CEC2;  /* control borders */
+
+    /* Ink */
+    --ink:          #1B1A17;  /* text, progress, completion, active icons */
+    --ink-2:        #57534B;  /* body copy, inactive nav */
+    --ink-3:        #6E695F;  /* metadata, labels, counters */
+    --ink-icon:     #857F73;  /* resting icons, empty ring, placeholders */
+
+    /* Signal — the only attention color outside the grade picker */
+    --signal:       #A63B24;
+    --signal-bg:    #F6E4DE;
+
+    /* Grades — GradePicker and history chips only */
+    --grade-again-text: #A63B24; --grade-again-bg: #F6E4DE; --grade-again-line: #EBCFC6;
+    --grade-hard-text:  #8A6212; --grade-hard-bg:  #F6EEDB; --grade-hard-line:  #E8D9B4;
+    --grade-good-text:  #2B4470; --grade-good-bg:  #E6EBF4; --grade-good-line:  #CBD5E8;
+    --grade-easy-text:  #4A6B3A; --grade-easy-bg:  #E6EDE0; --grade-easy-line:  #CCD9C2;
+
+    /* Overlay */
+    --scrim:          rgba(27, 26, 23, 0.16);
+    --shadow-overlay: 0 24px 64px rgba(27, 26, 23, 0.12);
   }
   
   .dark {
-    --bg-main: #0a0a0a;
-    --bg-sidebar: #121212;
-    
-    /* Swap neutral palette for dark mode */
-    --color-white: #171717;
-    --color-neutral-50: #1e1e1e;
-    --color-neutral-100: #262626;
-    --color-neutral-200: #333333;
-    --color-neutral-300: #404040;
-    --color-neutral-400: #737373;
-    --color-neutral-500: #a3a3a3;
-    --color-neutral-600: #d4d4d4;
-    --color-neutral-700: #e5e5e5;
-    --color-neutral-800: #f5f5f5;
-    --color-neutral-900: #fafafa;
-    
-    /* Swap pill colors for dark mode to maintain contrast and zen aesthetic */
-    --color-green-50: #052e16;
-    --color-green-200: #14532d;
-    --color-green-500: #22c55e;
-    --color-green-600: #4ade80;
-    --color-green-700: #86efac;
-    
-    --color-amber-50: #451a03;
-    --color-amber-200: #78350f;
-    --color-amber-500: #f59e0b;
-    --color-amber-600: #fbbf24;
-    --color-amber-700: #fcd34d;
-    
-    --color-red-50: #450a0a;
-    --color-red-200: #7f1d1d;
-    --color-red-500: #ef4444;
-    --color-red-600: #f87171;
-    --color-red-700: #fca5a5;
-    
-    --color-indigo-50: #1e1b4b;
-    --color-indigo-200: #312e81;
-    --color-indigo-500: #6366f1;
-    --color-indigo-600: #818cf8;
-    --color-indigo-700: #a5b4fc;
-    
-    --color-blue-50: #172554;
-    --color-blue-200: #1e3a8a;
-    --color-blue-500: #3b82f6;
-    --color-blue-600: #60a5fa;
-    --color-blue-700: #93c5fd;
-    
-    --color-orange-50: #431407;
-    --color-orange-200: #7c2d12;
-    --color-orange-500: #f97316;
-    --color-orange-600: #fb923c;
-    --color-orange-700: #fdba74;
+    --paper:        #0F0F0D;
+    --paper-sunk:   #0A0A09;
+    --surface:      #171714;
+    --well:         #1F1E1B;
+    --line:         #24231F;
+    --line-strong:  #34322D;
+
+    --ink:          #EDEBE4;
+    --ink-2:        #B3AEA2;
+    --ink-3:        #8F8A7E;
+    --ink-icon:     #7A7569;
+
+    --signal:       #F0A48E;
+    --signal-bg:    #3A1D15;
+
+    --grade-again-text: #F0A48E; --grade-again-bg: #3A1D15; --grade-again-line: #522A1E;
+    --grade-hard-text:  #E3BE6E; --grade-hard-bg:  #282013; --grade-hard-line:  #45371A;
+    --grade-good-text:  #A9BDE3; --grade-good-bg:  #161E2C; --grade-good-line:  #2B3A55;
+    --grade-easy-text:  #8DB07A; --grade-easy-bg:  #172014; --grade-easy-line:  #2E3F26;
+
+    --scrim:          rgba(0, 0, 0, 0.50);
+    --shadow-overlay: 0 24px 64px rgba(0, 0, 0, 0.50);
   }
   
   html, body {
-    background-color: var(--bg-main);
-    color: var(--color-neutral-900);
+    background-color: var(--paper);
+    color: var(--ink);
     @apply font-sans antialiased;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    max-width: 100vw;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   ::selection {
-    background-color: var(--color-neutral-200);
+    background-color: var(--well);
+    color: var(--ink);
   }
 
   /* Custom subtle scrollbar */
@@ -83,10 +120,10 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-neutral-300);
+    background: var(--line-strong);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-neutral-400);
+    background: var(--ink-3);
   }
 }

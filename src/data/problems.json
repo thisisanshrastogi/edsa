@@ -42,7 +42,7 @@
     },
     "9": {
       "name": "Greedy",
-      "icon": "⚡",
+      "icon": "",
       "color": "#f59e0b"
     },
     "10": {
@@ -248,7 +248,7 @@
     },
     {
       "id": "2.4",
-      "name": "Binary Search on Answer ⚡",
+      "name": "Binary Search on Answer",
       "tier": 2,
       "count": 9,
       "canonical": 3,
@@ -631,7 +631,7 @@
     },
     {
       "id": "7.8",
-      "name": "BFS on an Implicit State Graph ⚡",
+      "name": "BFS on an Implicit State Graph ",
       "tier": 7,
       "count": 7,
       "canonical": 5,
@@ -4486,7 +4486,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Medium",
       "freq": "H",
       "companies": [
@@ -4508,7 +4508,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer",
       "difficulty": "Medium",
       "freq": "H",
       "companies": [
@@ -4529,7 +4529,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Hard",
       "freq": "H",
       "companies": [
@@ -4551,7 +4551,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Medium",
       "freq": "H",
       "companies": [
@@ -4572,7 +4572,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Medium",
       "freq": "M",
       "companies": [
@@ -4592,7 +4592,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Medium",
       "freq": "M",
       "companies": [
@@ -4612,7 +4612,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [
@@ -4632,7 +4632,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [
@@ -4653,7 +4653,7 @@
       "tier": 2,
       "tierName": "Searching & Ordering",
       "patternId": "2.4",
-      "pattern": "Binary Search on Answer ⚡",
+      "pattern": "Binary Search on Answer ",
       "difficulty": "Hard",
       "freq": "L",
       "companies": [
@@ -11685,7 +11685,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "H",
       "companies": [
@@ -11707,7 +11707,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Medium",
       "freq": "H",
       "companies": [
@@ -11728,7 +11728,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [
@@ -11749,7 +11749,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [
@@ -11770,7 +11770,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "H",
       "companies": [
@@ -11792,7 +11792,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [
@@ -11813,7 +11813,7 @@
       "tier": 7,
       "tierName": "Graphs",
       "patternId": "7.8",
-      "pattern": "BFS on an Implicit State Graph ⚡",
+      "pattern": "BFS on an Implicit State Graph ",
       "difficulty": "Hard",
       "freq": "M",
       "companies": [

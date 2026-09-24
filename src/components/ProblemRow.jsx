@@ -1,136 +1,127 @@
-import { useState } from 'react';
-import { Bookmark, FileText, Check, ExternalLink, MessageSquare, Star, Lock, Flag } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Bookmark, Flag, FileText } from 'lucide-react';
+import { IconButton } from './ui/IconButton';
+import { ProgressRing } from './ui/Progress';
+import { DueChip } from './ui/Chips';
+import GradePicker from './GradePicker';
 
-export default function ProblemRow({ problem, index, store, onClick }) {
+export default function ProblemRow({ problem, store, onClick, compact = false }) {
   const isCompleted = store.completed[problem.id];
   const isBookmarked = store.bookmarks[problem.id];
   const isStruggled = store.struggled?.[problem.id];
   const note = store.notes[problem.id] || "";
   const hasNote = note.trim().length > 0;
+  const srs = store.srsData?.[problem.id];
+  const [showPicker, setShowPicker] = useState(false);
+  const rowRef = useRef(null);
 
-  const getDifficultyBadge = (difficulty) => {
-    switch(difficulty?.toLowerCase()) {
-      case 'easy': return 'bg-green-50/50 text-green-700 border-green-200';
-      case 'medium': return 'bg-amber-50/50 text-amber-700 border-amber-200';
-      case 'hard': return 'bg-red-50/50 text-red-700 border-red-200';
-      default: return 'bg-neutral-50 text-neutral-600 border-neutral-200';
+  const getDueStatus = () => {
+    if (!isCompleted || !srs) return null;
+    const now = Date.now();
+    const isDueToday = new Date(srs.due).toDateString() === new Date().toDateString();
+    const isLate = srs.due < now && !isDueToday;
+    const daysLate = Math.floor((now - srs.due) / (1000 * 60 * 60 * 24));
+    const daysUntil = Math.max(1, Math.ceil((srs.due - now) / (1000 * 60 * 60 * 24)));
+
+    if (isDueToday) {
+      return <DueChip>Due today</DueChip>;
+    } else if (isLate) {
+      return <DueChip>{daysLate}d late</DueChip>;
+    } else {
+      return <span className="font-mono text-[12px] text-[var(--ink-3)]">in {daysUntil}d</span>;
     }
   };
 
   return (
-    <div 
-      className={`transition-colors relative ${store.compactMode ? 'px-3 py-1.5 rounded-lg' : 'p-3 md:px-4 md:py-3'} ${isStruggled ? 'bg-orange-50/30 hover:bg-orange-50/50' : (isCompleted ? 'bg-neutral-50/30' : 'hover:bg-neutral-50/50')}`}
-    >
-      <div className={`flex ${store.compactMode ? 'items-center gap-3' : 'items-start gap-3'}`}>
-        {/* Custom Checkbox */}
-          <button 
-          onClick={(e) => { e.stopPropagation(); store.toggleComplete(problem.id); }}
-          className={`
-            shrink-0 rounded-full border flex items-center justify-center transition-all duration-300
-            ${store.compactMode ? 'w-4 h-4' : 'mt-0.5 w-5 h-5'}
-            ${isCompleted ? 'bg-green-500 border-green-500 text-white' : 'border-neutral-300 hover:border-neutral-400 bg-white'}
-          `}
+    <div ref={rowRef} id={`problem-${problem.id}`} className={`flex flex-col rounded-[10px] transition-colors duration-120 outline-none
+      ${showPicker ? 'bg-[var(--surface)] border-[var(--line)] border' : 'border border-transparent hover:bg-[var(--surface)] focus-within:bg-[var(--surface)] focus-within:border-[var(--line)]'}
+    `}>
+      <div 
+        className={`flex items-center px-[8px] group cursor-pointer ${compact ? 'h-[44px]' : 'h-[56px]'}`}
+        onClick={() => setShowPicker(!showPicker)}
+      >
+        <button 
+          onClick={(e) => { 
+            e.stopPropagation(); 
+            setShowPicker(!showPicker);
+          }}
+          className="w-[44px] h-[44px] shrink-0 flex items-center justify-center outline-none focus-visible:outline-[1.5px] focus-visible:outline-[var(--ink)] rounded-[10px]"
+          aria-label={isCompleted ? "Completed, click to grade again" : "Mark completed"}
         >
-          {isCompleted && <Check className="w-3.5 h-3.5" strokeWidth={3} />}
+          <ProgressRing percent={isCompleted ? 100 : 0} completed={isCompleted} />
         </button>
 
-        <div className={`flex-1 min-w-0 flex ${store.compactMode ? 'flex-col lg:flex-row lg:items-center gap-2 lg:gap-3' : 'flex-col space-y-1'}`}>
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col justify-center flex-1 min-w-0 pr-[8px]">
+          <div className="flex items-center gap-[8px]">
             <a 
               href={problem.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`font-medium tracking-tight hover:underline underline-offset-4 decoration-neutral-300 transition-colors ${store.compactMode ? 'text-sm' : ''} ${isCompleted ? 'text-neutral-400 line-through' : 'text-neutral-900'}`}
+              onClick={(e) => e.stopPropagation()}
+              className={`text-[15px] font-medium tracking-[-0.01em] truncate hover:underline underline-offset-[3px] outline-none focus-visible:outline-[1.5px] focus-visible:outline-[var(--ink)] rounded-[4px]
+                ${isCompleted ? 'text-[var(--ink-3)]' : 'text-[var(--ink)]'}`}
             >
-              {problem.lcNum ? `${problem.lcNum}. ` : ''}{problem.title}
+              {problem.title}
             </a>
-            
-            {/* Badges */}
-            <div className="flex items-center gap-1.5 mt-1 md:mt-0 md:ml-2 flex-wrap">
-              <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${getDifficultyBadge(problem.difficulty)}`}>
-                {problem.difficulty}
-              </span>
-              
-              {problem.isCanonical && (
-                <span title="Canonical - Core problem for this pattern" className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-neutral-100 text-neutral-800 border-neutral-300">
-                  <Star className="w-3 h-3 fill-neutral-800" /> Canonical
-                </span>
-              )}
-
-              {problem.priority && (
-                <span title={`Priority: ${problem.priority}`} className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
-                  problem.priority.toLowerCase() === 'core' ? 'bg-red-50 text-red-700 border-red-200' :
-                  problem.priority.toLowerCase() === 'important' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                  'bg-blue-50 text-blue-700 border-blue-200'
-                }`}>
-                  {problem.priority}
-                </span>
-              )}
-
-              {problem.freq && (
-                <span title={`Frequency: ${problem.freq}`} className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-neutral-100 text-neutral-600 border-neutral-200">
-                  Freq: {problem.freq}
-                </span>
-              )}
-
-              {problem.indianFav && (
-                <span title="Favored by Indian product companies" className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-orange-50 text-orange-700 border-orange-200">
-                  IN
-                </span>
-              )}
-
-              {problem.isPremium && (
-                <span title="Premium Locked" className="flex items-center justify-center w-5 h-5 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-500">
-                  <Lock className="w-3 h-3" />
-                </span>
-              )}
-            </div>
+            {getDueStatus()}
           </div>
-          
-          <div className={`flex items-center gap-4 text-sm text-neutral-500 ${store.compactMode ? 'lg:ml-auto mt-1 lg:mt-0' : ''}`}>
-            {!store.compactMode && problem.companies?.length > 0 && (
-              <span className="truncate max-w-[200px]">
-                {problem.companies.join(', ')}
-              </span>
-            )}
-            
-            <div className={`flex items-center gap-3 opacity-70 ${!store.compactMode ? 'ml-auto' : ''}`}>
-              <button 
-                onClick={(e) => { e.stopPropagation(); onClick && onClick(); }}
-                className={`hover:text-neutral-900 transition-colors ${hasNote ? 'text-blue-600 opacity-100' : ''}`}
-                title={hasNote ? "View Note" : "Add Note"}
-              >
-                <MessageSquare className="w-4 h-4" strokeWidth={2} />
-              </button>
-              <button 
-                onClick={(e) => { e.stopPropagation(); store.toggleStruggled(problem.id); }}
-                className={`hover:text-orange-500 transition-colors ${isStruggled ? 'text-orange-500 fill-orange-500 opacity-100' : ''}`}
-                title="Needs Revision (Struggled)"
-              >
-                <Flag className="w-4 h-4" strokeWidth={2} />
-              </button>
-              <button 
-                onClick={(e) => { e.stopPropagation(); store.toggleBookmark(problem.id); }}
-                className={`hover:text-neutral-900 transition-colors ${isBookmarked ? 'text-amber-500 fill-amber-500 opacity-100' : ''}`}
-                title="Bookmark"
-              >
-                <Bookmark className="w-4 h-4" strokeWidth={2} />
-              </button>
-              <a 
-                href={problem.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="hover:text-neutral-900 transition-colors"
-                title="Open Link"
-              >
-                <ExternalLink className="w-4 h-4" strokeWidth={2} />
-              </a>
+          {!compact && (
+            <div className="font-mono text-[12px] text-[var(--ink-3)] flex items-center gap-[4px] mt-[2px] truncate">
+              <span>{problem.difficulty}</span>
+              {problem.isCanonical && <span>· Core</span>}
+              {problem.companies?.length > 0 && <span className="truncate max-w-[120px] md:max-w-[200px]">· {problem.companies.join(', ')}</span>}
             </div>
-          </div>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center sm:opacity-0 sm:group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-120">
+          <IconButton 
+            icon={FileText} 
+            onClick={(e) => { e.stopPropagation(); onClick && onClick(); }} 
+            active={hasNote} 
+            aria-label="Notes" 
+            className={hasNote ? 'sm:opacity-100 !opacity-100' : ''}
+          />
+          <IconButton 
+            icon={Flag} 
+            onClick={(e) => { e.stopPropagation(); store.toggleStruggled(problem.id); }} 
+            active={isStruggled} 
+            aria-label="Needs revision" 
+            className={isStruggled ? 'sm:opacity-100 !opacity-100' : ''}
+          />
+          <IconButton 
+            icon={Bookmark} 
+            onClick={(e) => { e.stopPropagation(); store.toggleBookmark(problem.id); }} 
+            active={isBookmarked} 
+            aria-label="Bookmark" 
+            className={isBookmarked ? 'sm:opacity-100 !opacity-100' : ''}
+          />
         </div>
       </div>
 
+      {/* Expanded Picker */}
+      {showPicker && (
+        <GradePicker 
+          onSelect={(grade) => {
+            store.recordAttempt(problem.id, grade);
+            setShowPicker(false);
+          }}
+          onClose={() => setShowPicker(false)}
+          isCompleted={isCompleted}
+          onMarkUnsolved={() => {
+            store.toggleComplete(problem.id);
+            setShowPicker(false);
+          }}
+          onMarkSolved={() => {
+            if (!isCompleted) store.toggleComplete(problem.id);
+            if (srs) store.removeSrs(problem.id);
+            setShowPicker(false);
+          }}
+          parentRef={rowRef}
+          srs={srs}
+        />
+      )}
     </div>
   );
 }

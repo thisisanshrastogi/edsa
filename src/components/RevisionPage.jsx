@@ -4,24 +4,24 @@ import SlideOver from './SlideOver';
 import { PageHeader } from './ui/PageHeader';
 import { SectionLabel } from './ui/Headings';
 import { EmptyState } from './ui/EmptyState';
-import { Bookmark } from 'lucide-react';
+import { Flag } from 'lucide-react';
 
-export default function BookmarksPage({ data, store }) {
+export default function RevisionPage({ data, store }) {
   const [selectedProblem, setSelectedProblem] = useState(null);
 
-  const savedProblems = useMemo(() => {
-    return data.problems.filter(p => store.bookmarks[p.id]);
-  }, [data.problems, store.bookmarks]);
+  const flaggedProblems = useMemo(() => {
+    return data.problems.filter(p => store.struggled?.[p.id]);
+  }, [data.problems, store.struggled]);
 
   const groups = useMemo(() => {
     const grouped = {};
-    savedProblems.forEach(p => {
+    flaggedProblems.forEach(p => {
       const tierId = String(p.tier);
       if (!grouped[tierId]) grouped[tierId] = [];
       grouped[tierId].push(p);
     });
     return grouped;
-  }, [savedProblems]);
+  }, [flaggedProblems]);
 
   const groupKeys = Object.keys(groups).sort((a, b) => parseInt(a) - parseInt(b));
 
@@ -29,13 +29,13 @@ export default function BookmarksPage({ data, store }) {
     <div className="flex h-full w-full justify-center pb-[128px]">
       <div className="w-full max-w-[800px] px-[24px] md:px-[64px]">
         <PageHeader 
-          breadcrumb={`LIBRARY / ${savedProblems.length} SAVED`}
-          title="Bookmarks"
-          lede="Problems you saved to come back to."
+          breadcrumb={`LIBRARY / ${flaggedProblems.length} FLAGGED`}
+          title="Needs revision"
+          lede="Problems you flagged as shaky. Clear the flag once they feel solid."
         />
 
-        {savedProblems.length === 0 ? (
-          <EmptyState icon={Bookmark} message="Nothing saved yet. Press B on any problem." />
+        {flaggedProblems.length === 0 ? (
+          <EmptyState icon={Flag} message="Nothing flagged. Press R on any problem." />
         ) : (
           <div className="space-y-[48px]">
             {groupKeys.map(tierId => {
