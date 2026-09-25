@@ -8,6 +8,7 @@ import { getAuth, signOut as fbSignOut, signInWithPopup, GoogleAuthProvider } fr
 import { useAuth } from '../hooks/useAuth';
 import { IconButton } from './ui/IconButton';
 import { ProgressBar } from './ui/Progress';
+import ThemeMenu from './ThemeMenu';
 
 /* ── Shared class strings (spec §3) ───────────────────────────────────────── */
 
@@ -37,8 +38,6 @@ const TIER_GROUPS = [
   ['Advanced', [8, 9, 10, 11, 12]],
 ];
 
-/* ── Brand ────────────────────────────────────────────────────────────────── */
-
 // Brush-stroke ensō: thick rounded head, tapering tail, open gap.
 const ENSO_PATH =
   'M15.4 3.5 L15.0 3.0 L14.5 2.6 L13.9 2.2 L13.3 1.8 L12.7 1.6 L12.0 1.4 L11.3 1.3 L10.6 1.2 L10.0 1.2 L9.3 1.2 L8.6 1.3 L7.9 1.4 L7.3 1.6 L6.6 1.9 L6.0 2.1 L5.4 2.5 L4.8 2.9 L4.3 3.3 L3.8 3.8 L3.3 4.3 L2.9 4.8 L2.5 5.4 L2.2 6.0 L1.9 6.6 L1.7 7.3 L1.5 7.9 L1.4 8.6 L1.3 9.3 L1.3 10.0 L1.4 10.6 L1.5 11.3 L1.6 12.0 L1.8 12.6 L2.1 13.2 L2.4 13.8 L2.7 14.4 L3.1 14.9 L3.5 15.4 L4.0 15.9 L4.5 16.3 L5.0 16.7 L5.6 17.0 L6.2 17.3 L6.7 17.6 L7.4 17.8 L8.0 17.9 L8.6 18.0 L9.2 18.1 L9.9 18.1 L10.5 18.0 L11.1 17.9 L11.7 17.8 L12.3 17.6 L12.9 17.3 L13.4 17.1 L14.0 16.7 L14.4 16.4 L14.9 16.0 L15.3 15.5 L15.7 15.1 L16.1 14.6 L16.4 14.1 L16.6 13.6 L16.9 13.0 L17.0 12.5 L17.2 11.9 L17.3 11.3 L17.3 10.8 L17.3 10.2 L17.3 9.6 L17.2 9.1 L17.0 8.5 L16.7 8.6 L16.8 9.1 L16.8 9.6 L16.8 10.2 L16.7 10.7 L16.6 11.2 L16.5 11.7 L16.3 12.2 L16.1 12.7 L15.9 13.2 L15.6 13.6 L15.3 14.0 L15.0 14.4 L14.6 14.8 L14.2 15.1 L13.8 15.4 L13.4 15.7 L12.9 16.0 L12.4 16.2 L11.9 16.3 L11.4 16.5 L10.9 16.6 L10.4 16.6 L9.9 16.6 L9.4 16.6 L8.9 16.5 L8.4 16.4 L7.9 16.3 L7.4 16.1 L6.9 15.9 L6.5 15.6 L6.1 15.3 L5.7 15.0 L5.3 14.6 L4.9 14.2 L4.6 13.8 L4.4 13.4 L4.1 12.9 L3.9 12.5 L3.7 12.0 L3.6 11.5 L3.5 11.0 L3.5 10.5 L3.5 10.0 L3.5 9.5 L3.6 9.0 L3.7 8.5 L3.9 8.0 L4.0 7.5 L4.3 7.1 L4.5 6.6 L4.8 6.2 L5.2 5.9 L5.5 5.5 L5.9 5.2 L6.3 4.9 L6.7 4.6 L7.2 4.4 L7.6 4.3 L8.1 4.1 L8.5 4.0 L9.0 3.9 L9.5 3.9 L10.0 3.9 L10.4 4.0 L10.9 4.0 L11.4 4.2 L11.8 4.3 L12.2 4.5 L12.7 4.7 L13.1 4.9 L13.5 5.1 L13.9 5.3 L14.2 5.5 L14.5 5.6 L14.8 5.6 L15.1 5.5 L15.4 5.4 L15.6 5.2 L15.7 4.9 L15.8 4.6 L15.9 4.3 L15.8 4.0 L15.6 3.7 Z';
@@ -57,7 +56,7 @@ export function EnsoMark({ size = 22, className = '' }) {
 export function Brand() {
   return (
     <div className="flex items-center gap-[10px] text-[var(--ink)] select-none">
-      <EnsoMark />
+      <EnsoMark className="text-[var(--seal)]" />
       <span className="flex items-baseline gap-[5px] leading-none">
         <span className="font-sans font-semibold text-[15px] tracking-[-0.01em]">EDSA</span>
         <span className="font-serif italic text-[17px] text-[var(--ink-2)]">tracker</span>
@@ -320,11 +319,7 @@ export default function Sidebar({
             aria-label={`Search (${isMac ? '⌘K' : 'Ctrl K'})`}
             title={`Search  ${isMac ? '⌘K' : 'Ctrl K'}`}
           />
-          <IconButton
-            icon={store.theme === 'dark' ? Sun : Moon}
-            onClick={store.toggleTheme}
-            aria-label={store.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          />
+          <ThemeMenu store={store} />
         </div>
       </div>
 
@@ -347,8 +342,11 @@ export default function Sidebar({
                 key={item.id}
                 onClick={() => go(item.path)}
                 aria-current={active ? 'page' : undefined}
-                className={`${rowBase} gap-[12px] ${rowState(active)}`}
+                className={`${rowBase} gap-[12px] relative ${rowState(active)}`}
               >
+                {active && (
+                  <div className="absolute left-[-8px] w-[2px] h-[20px] rounded-full bg-[var(--nav-marker)]" />
+                )}
                 <item.icon
                   className={`w-4 h-4 shrink-0 ${active ? 'text-[var(--ink)]' : 'text-[var(--ink-icon)]'}`}
                   strokeWidth={1.5}
@@ -381,8 +379,11 @@ export default function Sidebar({
                       key={id}
                       onClick={() => handleTierClick(id)}
                       aria-current={active ? 'page' : undefined}
-                      className={`${rowBase} gap-[12px] ${rowState(active)}`}
+                      className={`${rowBase} gap-[12px] relative ${rowState(active)}`}
                     >
+                      {active && (
+                        <div className="absolute left-[-8px] w-[2px] h-[20px] rounded-full bg-[var(--nav-marker)]" />
+                      )}
                       <span className={`${dataCls} w-[20px] shrink-0 font-normal`}>
                         {String(id).padStart(2, '0')}
                       </span>

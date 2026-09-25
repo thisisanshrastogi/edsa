@@ -16,6 +16,9 @@ export default function HelpPage() {
           {/* Shortcuts */}
           <div>
             <GroupHeading className="mb-[16px]">Shortcuts</GroupHeading>
+            <p className="font-sans text-[15px] leading-[1.6] text-[var(--ink-2)] mb-[24px]">
+              Appearance settings (themes and light/dark modes) live in the sidebar menu and the command palette.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[32px] gap-y-[12px]">
               {[
                 { k: 'J K', desc: 'Next / Prev row' },

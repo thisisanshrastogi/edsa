@@ -3,7 +3,7 @@ import React from 'react';
 export function ProgressBar({ percent, className = '' }) {
   return (
     <div className={`h-[2px] w-full bg-[var(--line)] rounded-full overflow-hidden ${className}`}>
-      <div className="h-full bg-[var(--ink)] transition-all duration-[200ms]" style={{ width: `${percent}%` }} />
+      <div className="h-full bg-[var(--progress-fill)] transition-all duration-[200ms]" style={{ width: `${percent}%` }} />
     </div>
   );
 }

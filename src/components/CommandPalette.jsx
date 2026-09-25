@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { Search, ChevronRight, Moon, Sun, Target, Calendar, Bookmark, Flag, Info } from 'lucide-react';
+import { Search, ChevronRight, Moon, Sun, Target, Calendar, Bookmark, Flag, Info, Monitor, Palette } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Badge, Kbd } from './ui/Chips';
 
@@ -25,7 +25,15 @@ export default function CommandPalette({ isOpen, onClose, store, data, setActive
     
     // Commands
     const commands = [];
-    if ('toggle dark mode theme'.includes(q)) commands.push({ type: 'action', title: 'Toggle theme', icon: store.theme === 'dark' ? <Sun className="w-4 h-4"/> : <Moon className="w-4 h-4"/>, action: () => store.toggleTheme() });
+    if ('toggle dark mode theme'.includes(q)) commands.push({ type: 'action', title: 'Toggle theme', icon: store.resolvedMode === 'dark' ? <Sun className="w-4 h-4"/> : <Moon className="w-4 h-4"/>, action: () => store.toggleTheme() });
+    
+    if ('theme: usuzumi'.includes(q)) commands.push({ type: 'action', title: 'Theme: Usuzumi', icon: <Palette className="w-4 h-4"/>, action: () => store.setTheme('usuzumi') });
+    if ('theme: washi'.includes(q)) commands.push({ type: 'action', title: 'Theme: Washi', icon: <Palette className="w-4 h-4"/>, action: () => store.setTheme('washi') });
+    
+    if ('mode: light'.includes(q)) commands.push({ type: 'action', title: 'Mode: Light', icon: <Sun className="w-4 h-4"/>, action: () => store.setMode('light') });
+    if ('mode: dark'.includes(q)) commands.push({ type: 'action', title: 'Mode: Dark', icon: <Moon className="w-4 h-4"/>, action: () => store.setMode('dark') });
+    if ('mode: system'.includes(q)) commands.push({ type: 'action', title: 'Mode: System', icon: <Monitor className="w-4 h-4"/>, action: () => store.setMode('system') });
+
     if ('toggle compact mode'.includes(q)) commands.push({ type: 'action', title: 'Toggle compact mode', icon: <Target className="w-4 h-4"/>, action: () => store.toggleCompactMode() });
     if ('toggle focus mode'.includes(q)) commands.push({ type: 'action', title: 'Toggle focus mode', icon: <Target className="w-4 h-4"/>, action: () => store.toggleFocusMode(), kbd: '⌘B' });
     if ('go to today due'.includes(q)) commands.push({ type: 'action', title: 'Go to Today', icon: <Calendar className="w-4 h-4"/>, action: () => { navigate('/due'); onClose(); } });

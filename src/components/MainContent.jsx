@@ -227,7 +227,7 @@ export default function MainContent({ tierId, data, store, highlightProblemId, c
                 }}
                 className={`w-full py-[8px] pl-[16px] text-left border-l-[1px] text-[14px] transition-colors duration-120 outline-none focus-visible:text-[var(--ink)] focus-visible:border-[var(--ink)] truncate
                   ${isActive
-                    ? 'border-[var(--ink)] text-[var(--ink)] font-medium'
+                    ? 'border-[var(--rule-active)] text-[var(--ink)] font-medium'
                     : 'border-[var(--line)] text-[var(--ink-2)] font-sans hover:text-[var(--ink)] hover:border-[var(--ink)]'}
                 `}
               >

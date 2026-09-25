@@ -52,14 +52,14 @@ export default function SlideOver({ problem, store, onClose, onNext, onPrev, has
     
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     saveTimeoutRef.current = setTimeout(() => {
-      store.updateNote(problem.id, val);
+      store.saveNote(problem.id, val);
       setSaveStatus("Saved");
     }, 800);
   };
 
   const handleNoteBlur = () => {
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-    store.updateNote(problem.id, note);
+    store.saveNote(problem.id, note);
     setSaveStatus("Saved");
   };
 

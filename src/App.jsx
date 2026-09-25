@@ -44,7 +44,7 @@ function AppContent() {
       {/* Mobile Header (below lg) */}
       <div className="lg:hidden h-[56px] px-[16px] bg-[var(--paper)] border-b border-[var(--line)] sticky top-0 z-10 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-[8px]">
-          <div className="w-[20px] h-[20px] rounded-full bg-[var(--ink)] flex items-center justify-center text-[var(--paper)]">
+          <div className="w-[20px] h-[20px] rounded-full bg-[var(--seal)] flex items-center justify-center text-[var(--on-seal)] shrink-0">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M17.6 5.4A8.5 8.5 0 1 0 20.3 13" />
             </svg>

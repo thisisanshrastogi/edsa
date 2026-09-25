@@ -18,9 +18,19 @@
   <script>
     // Apply theme before first paint to prevent flash of wrong theme
     (function () {
-      var t = localStorage.getItem('dsa_theme');
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      if (t === 'dark') document.documentElement.classList.add('dark');
+      try {
+        var t = localStorage.getItem('edsa-theme') || 'usuzumi';
+        var m = localStorage.getItem('edsa-mode') || 'system';
+        var isDark = m === 'dark' || (m === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', t);
+        if (isDark) document.documentElement.classList.add('dark');
+        document.documentElement.classList.add('no-transitions');
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            document.documentElement.classList.remove('no-transitions');
+          });
+        });
+      } catch (e) {}
     })();
   </script>
 </head>

@@ -3,6 +3,7 @@ import { useAuth } from './useAuth';
 import { db } from '../lib/firebase';
 import { doc, getDoc, setDoc, collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
 import { schedule, snapToStartOfDay, GRADES } from '../lib/srs';
+import { useTheme } from './useTheme';
 
 export function useStore() {
   const { user } = useAuth();
@@ -166,22 +167,7 @@ export function useStore() {
     localStorage.setItem('dsa_srs', JSON.stringify(srsData));
   }, [srsData, isInitializing]);
 
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('dsa_theme');
-    if (!saved) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    return saved;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('dsa_theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
+  const { theme, mode, resolvedMode, setTheme, setMode } = useTheme();
 
   const [compactMode, setCompactMode] = useState(() => {
     const saved = localStorage.getItem('dsa_compact');
@@ -298,7 +284,13 @@ export function useStore() {
   };
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    if (mode === 'light') {
+      setMode('dark');
+    } else if (mode === 'dark') {
+      setMode('light'); // The prompt says: "Keep the existing 'Toggle theme' command, now cycling light ↔ dark (and leaving system mode if it was on)."
+    } else {
+      setMode(resolvedMode === 'light' ? 'dark' : 'light');
+    }
   };
 
   const mergeUnsyncedData = async () => {
@@ -350,7 +342,7 @@ export function useStore() {
     completed, toggleComplete,
     bookmarks, toggleBookmark,
     notes, saveNote,
-    theme, toggleTheme,
+    theme, mode, resolvedMode, setTheme, setMode, toggleTheme,
     struggled, toggleStruggled,
     compactMode, toggleCompactMode,
     focusMode, toggleFocusMode,
