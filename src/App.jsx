@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-ro
 import { Menu } from 'lucide-react';
 import problemsData from './data/problems.json';
 import { useStore } from './hooks/useStore';
-import Sidebar from './components/Sidebar';
+import Sidebar, { EnsoMark } from './components/Sidebar';
 import MainContent from './components/MainContent';
 import HelpPage from './components/HelpPage';
 import BookmarksPage from './components/BookmarksPage';
@@ -44,13 +44,11 @@ function AppContent() {
       {/* Mobile Header (below lg) */}
       <div className="lg:hidden h-[56px] px-[16px] bg-[var(--paper)] border-b border-[var(--line)] sticky top-0 z-10 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-[8px]">
-          <div className="w-[20px] h-[20px] rounded-full bg-[var(--seal)] flex items-center justify-center text-[var(--on-seal)] shrink-0">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M17.6 5.4A8.5 8.5 0 1 0 20.3 13" />
-            </svg>
-          </div>
-          <span className="font-sans font-medium text-[15px] text-[var(--ink)] tracking-tight">EDSA</span>
-          <span className="font-serif italic text-[16px] text-[var(--ink-2)] ml-[4px]">tracker</span>
+          <EnsoMark className="text-[var(--seal)]" size={20} />
+          <span className="flex items-baseline gap-[4px] leading-none">
+            <span className="font-sans font-semibold text-[15px] tracking-[-0.01em] text-[var(--ink)]">EDSA</span>
+            <span className="font-serif italic text-[16px] text-[var(--ink-2)]">tracker</span>
+          </span>
         </div>
         <IconButton icon={Menu} onClick={() => setSidebarOpen(true)} aria-label="Open menu" />
       </div>

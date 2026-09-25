@@ -23,7 +23,7 @@ export function ProgressRing({ percent, completed, className = '' }) {
         </div>
       ) : (
         <svg className="w-[20px] h-[20px] -rotate-90">
-          <circle cx="10" cy="10" r={radius} fill="none" stroke="var(--line-strong)" strokeWidth="1.5" />
+          <circle cx="10" cy="10" r={radius} fill="none" stroke="var(--line)" strokeWidth="1.5" />
           <circle cx="10" cy="10" r={radius} fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeDasharray={circumference} strokeDashoffset={offset} className="transition-all duration-[200ms]" />
         </svg>
       )}
